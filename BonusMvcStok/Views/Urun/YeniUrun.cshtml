@@ -1,0 +1,23 @@
+﻿@model BonusMvcStok.Models.Entity.tblurunler
+@{
+    ViewBag.Title = "YeniUrun";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <h3 style="color:cornflowerblue">Yeni Ürün Girişi</h3><br />
+    <label>Ürün Adı</label>
+    @Html.TextBoxFor(x => x.ad, new { @class = "form-control", @required = "required", placeholder = "Ürün Adı Girin" })<br />
+    <label>Marka</label>
+    @Html.TextBoxFor(x => x.marka, new { @class = "form-control", @required = "required", placeholder = "Marka Girin" })<br />
+    <label>Stok</label>
+    @Html.TextBoxFor(x => x.stok, new { @class = "form-control", @required = "required", placeholder = "Stok Miktarı" })<br />
+    <label>Alış Fiyatı</label>
+    @Html.TextBoxFor(x => x.alisfiyat, new { @class = "form-control", @required = "required", placeholder = "Alış Fiyatı" })<br />
+    <label>Satış Fiyatı</label>
+    @Html.TextBoxFor(x => x.satisfiyat, new { @class = "form-control", @required = "required", placeholder = "Satış Fiyatı" })<br />
+    <label>Kategori</label>
+    @Html.DropDownListFor(x => x.tblkategori.id, (List<SelectListItem>)ViewBag.drop, new { @class = "form-control" })<br />
+
+    <button class="btn btn-info" style="color:black">Kaydet</button>
+</form>

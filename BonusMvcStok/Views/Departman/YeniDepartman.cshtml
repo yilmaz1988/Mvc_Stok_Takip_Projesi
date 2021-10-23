@@ -1,0 +1,16 @@
+﻿@model BonusMvcStok.Models.Entity.tbldepartman
+@{
+    ViewBag.Title = "YeniDepartman";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("YeniDepartman", "Departman", FormMethod.Post))
+{
+    <div class="form-group">
+        <h3 style="color:cornflowerblue">Yeni Departman Girişi</h3><br />
+        @Html.Label("Departman Adı")
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control", @required = "required", placeholder = "Departman İsmi" })
+    </div>
+    <button type="submit" class="btn btn-success" style="color:black">Kaydet</button>
+}

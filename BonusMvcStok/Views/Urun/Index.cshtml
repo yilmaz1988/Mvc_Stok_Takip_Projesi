@@ -1,0 +1,46 @@
+﻿@using BonusMvcStok.Models.Entity
+@model List<tblurunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using(Html.BeginForm("Index", "Urun", FormMethod.Get))
+{
+    <div style="margin-bottom:10px">
+        <b class="btn-sm btn-warning">Ürün Adı :</b> @Html.TextBox("p",null, new { @placeholder = "Ara", autofocus = "autofocus" })
+        <input type="submit" class="btn-info" value="Arama Yap" />
+
+    </div>
+}
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>ÜRÜN ADI</th>
+        <th>MARKA</th>
+        <th>STOK</th>
+        <th>ALIŞ FİYATI</th>
+        <th>SATIŞ FİYATI</th>
+        <th>KATEGORİ</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.id</td>
+            <td>@x.ad</td>
+            <td>@x.marka</td>
+            <td>@x.stok</td>
+            <td>@x.alisfiyat</td>
+            <td>@x.satisfiyat</td>
+            <td>@x.tblkategori.ad</td>
+            <td>
+                <a href="/Urun/UrunSil/@x.id" class="btn btn-sm btn-danger" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?')"><i class="fas fa-trash-alt"></i> Sil</a>
+            </td>
+            <td><a href="/Urun/UrunGetir/@x.id" class="btn btn-sm btn-success"><i class="fas fa-pen-fancy"></i> Güncelle</a></td>
+        </tr>
+    }
+
+</table>
+<a href="/Urun/YeniUrun" class="btn btn-info" style="color:black; font-family:sans-serif, Times, serif;">Yeni Ürün Ekle</a>

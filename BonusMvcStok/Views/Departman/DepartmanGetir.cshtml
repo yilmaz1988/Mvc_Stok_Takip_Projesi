@@ -1,0 +1,15 @@
+﻿@model BonusMvcStok.Models.Entity.tbldepartman
+@{
+    ViewBag.Title = "DepartmanGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("DepartmanGuncelle", "Departman", FormMethod.Post))
+{
+    <h3 style="color:cornflowerblue">Departman Güncelleme Sayfası</h3>
+    @Html.HiddenFor(x => x.id)
+    <br />
+    @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
+    <br />
+    <button type="submit" class="btn btn-success">Güncelle</button>
+}

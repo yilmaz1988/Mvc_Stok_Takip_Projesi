@@ -1,0 +1,33 @@
+﻿@using BonusMvcStok.Models.Entity
+@model List<tblsatislar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    int i = 0;
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>ÜRÜN</th>
+        <th>PERSONEL</th>
+        <th>MÜŞTERİ</th>
+        <th>FİYAT</th>
+        <th>TARİH</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        i++;
+        <tr>
+            <td>@i</td>
+            <td>@x.tblurunler.ad</td>
+            <td>@x.tblpersonel.ad @x.tblpersonel.soyad</td>
+            <td>@x.tblmusteri.ad @x.tblmusteri.soyad</td>
+            <td>@x.fiyat</td>
+            <td>@x.tarih.Value.ToString("dd MMMM yyyy HH:mm")</td>
+        </tr>
+    }
+
+</table>
+<a href="/Satislar/YeniSatis" class="btn btn-info" style="color:black; font-family:sans-serif, Times, serif;">Yeni Satış</a>

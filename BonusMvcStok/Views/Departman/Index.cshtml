@@ -1,0 +1,28 @@
+﻿@using BonusMvcStok.Models.Entity
+@model List<tbldepartman>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>#</th>
+        <th>DEPARTMAN ADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.id</td>
+            <td>@item.ad</td>
+            <td><a href="/Departman/DepartmanSil/@item.id" class="btn btn-sm btn-danger" id="btn1" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?')"><i class="fas fa-trash-alt"></i> Sil</a></td>
+            <td><a href="/Departman/DepartmanGetir/@item.id" class="btn btn-sm btn-success"><i class="fas fa-pen-fancy"></i> Güncelle</a></td>
+        </tr>
+    }
+   
+</table>
+<a href="/Departman/YeniDepartman" class="btn btn-info" style="font-family:sans-serif; color:black">Yeni Departman Ekle</a>

@@ -1,0 +1,48 @@
+﻿@model BonusMvcStok.ViewModels.PersonelFormViewModel
+@{
+    ViewBag.Title = "YeniPersonelEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 style="color:cadetblue">Personel Güncelle</h3>
+@using (Html.BeginForm("Kaydet", "Personel", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Ad")
+        @Html.TextBoxFor(m => m.Personel.ad, new { @class = "form-control", placeholder="Ad", required="required" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Soyad")
+        @Html.TextBoxFor(m => m.Personel.soyad, new { @class = "form-control", placeholder = "Soyad", required = "required" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Departman")
+        @Html.DropDownListFor(m => m.Personel.departmanId, new SelectList(Model.Departmanlar, "id", "ad"),"Departman Seçiniz", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Maaş")
+        @Html.TextBoxFor(m => m.Personel.maas, new { @class = "form-control", placeholder = "Maaş", required = "required" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Doğum Tarihi")
+        @Html.TextBoxFor(m => m.Personel.dogumtarihi,"{0:yyyy-MM-dd}", new { @class = "form-control", type="date", placeholder = "Doğum Tarihi", required = "required" })
+    </div>
+    @Html.Label("Cinsiyet")
+    <div class="radio">
+        <label>
+            @Html.RadioButtonFor(m => m.Personel.cinsiyet, true) Erkek
+        </label>
+        <label>
+            @Html.RadioButtonFor(m => m.Personel.cinsiyet, false) Kadın
+        </label>
+    </div>
+    @Html.Label("Evlilik Durumu")
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Personel.evlilikdurumu) Evliyseniz İşaretleyiniz
+        </label>
+    </div>
+    @Html.HiddenFor(m=>m.Personel.id)
+    <button type="submit" class="btn btn-success">Kaydet</button>
+}

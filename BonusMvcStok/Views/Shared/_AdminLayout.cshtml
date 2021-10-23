@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <link href="~/weblogin/css/fontawesome-all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand btn-primary" href="/Kategori/Index">Mağaza Stok Takip</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/Urun/Index/"><i class="fas fa-random"></i> Ürünler</a></li>
+                <li><a href="/Musteri/Index/"><i class="fas fa-user-tie"></i> Müşteriler</a></li>
+                <li><a href="/Kategori/Index/"><i class="fas fa-angle-double-right"></i> Kategoriler</a></li>
+                <li><a href="/Satislar/Index/"><i class="fas fa-euro-sign"></i> Satışlar</a></li>
+                @if (Roles.IsUserInRole("A"))
+                {
+                    <li><a href="/Departman/Index/"><i class="fas fa-eye"></i> Departmanlar</a></li>
+                    <li><a href="/Personel/Index/"><i class="fas fa-users"></i> Personeller</a></li>
+                }
+
+                <li><a href="/Admin/Index/"><i class="fas fa-user-plus"></i> Yeni Admin</a></li>
+                <li style="border-radius: 50px; border: solid 1px #099F37; box-shadow: 1px 1px 2px 2px; font-size:11px" class="btn-danger" id="cikis"><a href="#"><b style="color:black">Çıkış</b></a></li>
+                <a href="#" class="btn btn-success" style="position:relative; position:absolute; right:100px; top:10px; border-radius:10px; font-size: 15px;">Hoş Geldiniz : @HttpContext.Current.User.Identity.Name</a>
+
+            </ul>
+        </div>
+    </nav>
+    <script type="text/javascript">
+                 
+            $("#cikis").click(function () {
+               
+                Swal.fire({
+                    title: 'Gerçekten çıkış yapmak istiyor musunuz',
+                    showDenyButton: true,
+                    confirmButtonText: 'Evet',
+                    denyButtonText: `Hayır`,
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        Swal.fire('Çıkış Yapıldı!', '', 'success');
+                        setTimeout(function () {
+                            window.location = '/GirisYap/Index/';
+                        }, 2000);
+                    } else if (result.isDenied) {
+                        Swal.fire('Çıkış iptal edildi', '', 'info');
+                        return;
+                    }
+                });
+            });
+    </script>
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@model List<BonusMvcStok.Models.Entity.tblpersonel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 style="color:cornflowerblue">Personel Listesi</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Departman</th>
+            <th>Maaş</th>
+            <th>Yaş</th>
+            <th>Doğum Tarihi</th>
+            <th>Cinsiyet</th>
+            <th>Evlilik Durumu</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ad</td>
+                <td>@item.soyad</td>
+                <td>@item.tbldepartman.ad</td>
+                <td>@item.maas</td>
+                <td>@(item.dogumtarihi != null ? (DateTime.Now.Year - item.dogumtarihi.Value.Year).ToString() : "Yaş Bilinmiyor")</td>
+                @*<td>@(item.dogumtarihi == null ? "Yaş Bilinmiyor": (DateTime.Now.Year - item.dogumtarihi.Value.Year))</td>*@
+                <td>@(item.dogumtarihi == null ? "Doğum Tarihi Sisteme Eklenmedi": item.dogumtarihi.Value.ToString("dd-MM-yyyy"))</td>
+                <td>@(item.cinsiyet==true?"Erkek":"Kadın")</td>
+                <td>@(item.evlilikdurumu==true?"Evli":"Bekar")</td>
+
+                <td><a href="/Personel/PersonelSil/@item.id" class="btn btn-sm btn-danger" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?')"><i class="fas fa-trash-alt"></i> Sil</a></td>
+                <td><a href="/Personel/PersonelGuncelle/@item.id" class="btn btn-sm btn-success"><i class="fas fa-pen-fancy"></i> Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.ActionLink("Yeni Personel", "YeniPersonelEkle", null, new { @class = "btn btn-success" })
