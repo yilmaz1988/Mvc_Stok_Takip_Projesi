@@ -18,5 +18,6 @@ namespace BonusMvcStok.Models.Entity
         public string kullanici { get; set; }
         public string sifre { get; set; }
         public string role { get; set; }
+        public virtual bool BeniHatirla { get; set; }
     }
 }

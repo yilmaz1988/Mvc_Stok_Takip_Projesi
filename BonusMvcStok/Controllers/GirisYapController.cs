@@ -26,7 +26,7 @@ namespace BonusMvcStok.Controllers
             var bilgiler = db.tbladmin.FirstOrDefault(x => x.kullanici == t.kullanici && x.sifre == t.sifre);
             if (bilgiler != null)
             {
-                FormsAuthentication.SetAuthCookie(bilgiler.kullanici, false);
+                FormsAuthentication.SetAuthCookie(bilgiler.kullanici, bilgiler.BeniHatirla);
                 return RedirectToAction("Index", "Musteri");
             }
             else

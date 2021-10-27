@@ -1,7 +1,7 @@
-﻿
+﻿@model BonusMvcStok.Models.Entity.tbladmin
 @{
     Layout = null;
-    
+
 }
 
 <!--A Design by W3layouts
@@ -38,7 +38,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <h1>Giriş Paneli</h1>
     <div class=" w3l-login-form">
         <h2>Login Here</h2>
-        @using(Html.BeginForm("Giris", "GirisYap", FormMethod.Post))
+        @using (Html.BeginForm("Giris", "GirisYap", FormMethod.Post))
         {
 
             <div class=" w3l-form-group">
@@ -52,17 +52,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <label>Şifre:</label>
                 <div class="group">
                     <i class="fas fa-unlock"></i>
-                    <input type="password" class="form-control" placeholder="Şifre" required="required" name="sifre"/>
+                    <input type="password" class="form-control" placeholder="Şifre" required="required" name="sifre" />
                 </div>
             </div>
             <div class="forgot">
                 <a href="#">Şifremi Unuttum?</a>
-                <p><input type="checkbox">Beni Hatırla</p>
+                @*<p><input type="checkbox">Beni Hatırla</p>*@
+                <div style="color:cornflowerblue; font-weight:bold">
+                    @Html.CheckBoxFor(x => x.BeniHatirla)
+                    Beni Hatırla
+                </div>
+
+
             </div>
             <button type="submit">Giriş Yap</button>
         }
     </div>
-   
+
 </body>
 
 </html>
